@@ -1,0 +1,51 @@
+name: Validate manifests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate JSON manifests
+        run: |
+          set -e
+          echo "Checking JSON syntax of all manifests..."
+          for f in manifests/*.json server.json; do
+            echo "→ $f"
+            node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))"
+          done
+          echo "✓ All JSON manifests are valid"
+
+      - name: Validate smithery.yaml
+        run: |
+          set -e
+          echo "Checking smithery.yaml YAML syntax..."
+          node -e "
+            const yaml = require('child_process').execSync('npm pack js-yaml --dry-run --json 2>/dev/null && npm i js-yaml --no-save 2>&1').toString();
+            const j = require('js-yaml');
+            const fs = require('fs');
+            const doc = j.load(fs.readFileSync('smithery.yaml','utf8'));
+            if (!doc.name) throw new Error('Missing name');
+            if (!doc.startCommand) throw new Error('Missing startCommand');
+            if (!doc.startCommand.url) throw new Error('Missing startCommand.url');
+            console.log('✓ smithery.yaml OK — name=' + doc.name + ', url=' + doc.startCommand.url);
+          "
+
+      - name: Verify endpoint URL consistency
+        run: |
+          set -e
+          EXPECTED="https://api.mcp.ai/banco"
+          echo "Checking that all manifests point to $EXPECTED..."
+          grep -l "https://api.mcp.ai/banco" smithery.yaml server.json manifests/*.json > /dev/null
+          echo "✓ Endpoint URL is consistent"

@@ -1,0 +1,43 @@
+# Smithery configuration for Banco MCP
+# Schema: https://smithery.ai/docs/build/project-config
+# This is a REMOTE HTTP MCP — server hosted at https://api.mcp.ai/banco
+
+name: banco-mcp
+displayName: "Banco MCP — Open Finance Brasil"
+description: >
+  Conecte 30+ bancos brasileiros (Itaú, Nubank, Bradesco, Santander, Inter,
+  BB, Caixa, C6 e mais) ao Claude / Cursor / VS Code via Open Finance.
+  Extrato, saldos, transações, investimentos e cartões — em linguagem natural.
+  Somente leitura, regulado pelo Banco Central do Brasil.
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/douglac/banco-mcp
+repository: https://github.com/douglac/banco-mcp
+
+tags:
+  - open-finance
+  - open-banking
+  - banking
+  - brazil
+  - finance
+  - fintech
+  - lgpd
+  - read-only
+
+# Remote HTTP MCP — não há startCommand local (servidor já está hosted)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/banco
+
+# OAuth 2.1 é o caminho primário; clientes sem OAuth recebem uma tool
+# `authenticate` em runtime e o usuário gera JWT em app.mcp.ai/agent-auth.
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/banco/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem suporte a OAuth 2.1. O agente expõe uma tool
+      `authenticate(token)`. Usuário gera o JWT em
+      https://app.mcp.ai/agent-auth e cola no chat.

@@ -1,0 +1,8 @@
+{
+  "_comment": "Cole em .cursor/mcp.json (workspace) OU ~/.cursor/mcp.json (global). Reinicie o Cursor. Se o cliente suportar OAuth 2.1, o browser abre automaticamente. Senão, o agente vai pedir pra você ir em https://app.mcp.ai/agent-auth e colar o token de volta no chat.",
+  "mcpServers": {
+    "banco": {
+      "url": "https://api.mcp.ai/banco"
+    }
+  }
+}

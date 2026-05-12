@@ -1,0 +1,9 @@
+{
+  "_comment": "Cole em .vscode/mcp.json (workspace) OU configure via Command Palette: 'MCP: Add Server' → HTTP → cole https://api.mcp.ai/banco. Se o cliente suportar OAuth 2.1, browser abre automaticamente. Senão, o agente vai pedir pra você ir em https://app.mcp.ai/agent-auth e colar o token de volta no chat.",
+  "servers": {
+    "banco": {
+      "type": "http",
+      "url": "https://api.mcp.ai/banco"
+    }
+  }
+}

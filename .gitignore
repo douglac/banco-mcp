@@ -1,0 +1,41 @@
+# Secrets / credentials — NUNCA commitar
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+secrets.*
+credentials.*
+*.local.*
+
+# Logs / debug
+*.log
+logs/
+debug.log
+npm-debug.log*
+
+# Node / build artefatos (caso a gente adicione tooling depois)
+node_modules/
+dist/
+build/
+.cache/
+
+# Screenshots brutos com dados reais — só commitar versão borrada/sintética
+assets/screenshots-raw/
+*.raw.png
+*.raw.jpg
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+
+# Local notes (não publicar)
+.notes/
+TODO.local.md
