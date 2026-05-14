@@ -1,72 +1,17 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2024-11-05/server.schema.json",
-  "name": "banco-mcp",
-  "displayName": "Banco MCP",
-  "description": "Open Finance brasileiro para Claude, Cursor e agentes de IA. Conecte Itaú, Bradesco, Santander, Nubank, Inter, BB, Caixa, C6 e mais 25 bancos. Extrato, saldos, transações, investimentos e cartões. Somente leitura.",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.douglac/banco-mcp",
+  "title": "Banco MCP",
+  "description": "Brazilian Open Finance MCP — 30+ banks (Itaú, Nubank, etc.) to Claude/Cursor. Read-only.",
   "version": "0.1.0",
-  "license": "MIT",
-  "homepage": "https://github.com/douglac/banco-mcp",
   "repository": {
-    "type": "git",
-    "url": "https://github.com/douglac/banco-mcp.git"
+    "url": "https://github.com/douglac/banco-mcp",
+    "source": "github"
   },
-  "categories": ["finance", "banking", "fintech", "open-finance"],
-  "keywords": [
-    "open-finance",
-    "open-banking",
-    "brazil",
-    "banking",
-    "finance",
-    "fintech",
-    "nubank",
-    "itau",
-    "bradesco",
-    "santander"
-  ],
-  "language": "pt-BR",
-  "remote": {
-    "url": "https://api.mcp.ai/banco",
-    "transport": "streamable-http",
-    "auth": {
-      "primary": {
-        "type": "oauth2",
-        "resourceMetadataUrl": "https://api.mcp.ai/banco/.well-known/oauth-protected-resource"
-      },
-      "fallback": {
-        "type": "agent-auth",
-        "tokenSource": "https://app.mcp.ai/agent-auth",
-        "description": "Para clientes sem suporte a OAuth 2.1, o servidor expõe a tool `authenticate(token)`. O usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat."
-      }
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.mcp.ai/banco"
     }
-  },
-  "capabilities": {
-    "tools": true,
-    "resources": false,
-    "prompts": false
-  },
-  "tools": [
-    { "name": "openfinance_list_connections", "description": "Lista bancos conectados e link pra adicionar mais." },
-    { "name": "openfinance_get_item_status", "description": "Status de sincronização de uma conexão bancária." },
-    { "name": "openfinance_list_accounts", "description": "Lista contas (corrente, poupança, cartão) de um banco." },
-    { "name": "openfinance_get_accounts_detail", "description": "Detalhe completo de contas por ID (limites, cartões adicionais)." },
-    { "name": "openfinance_get_account_balance", "description": "Saldo atual de uma ou mais contas em tempo real." },
-    { "name": "openfinance_list_transactions", "description": "Extrato de transações com filtro por período e palavras-chave." },
-    { "name": "openfinance_list_credit_card_bills", "description": "Faturas de cartão de crédito com payment_status derivado." },
-    { "name": "openfinance_get_credit_card_bill", "description": "Detalhe de uma fatura específica." },
-    { "name": "openfinance_list_investments", "description": "Carteira de investimentos: ações, FIIs, renda fixa, fundos, previdência." },
-    { "name": "openfinance_list_investment_transactions", "description": "Movimentações de um investimento (compras, vendas, juros)." },
-    { "name": "openfinance_list_loans", "description": "Contratos de empréstimo por conexão bancária." },
-    { "name": "openfinance_list_categories", "description": "Taxonomia de categorias de transação." },
-    { "name": "openfinance_force_sync", "description": "Força sincronização imediata de uma ou mais conexões." },
-    { "name": "openfinance_disconnect_bank", "description": "Remove conexão com um banco e revoga o consentimento." }
-  ],
-  "privacy": {
-    "dataCollection": "read-only",
-    "dataRetention": "30 days after disconnect",
-    "subprocessors": [
-      "Agregador Open Finance autorizado pelo Banco Central do Brasil",
-      "LLM host escolhido pelo usuário"
-    ],
-    "regulatedBy": "Banco Central do Brasil (Open Finance)"
-  }
+  ]
 }
