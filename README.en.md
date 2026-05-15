@@ -10,7 +10,7 @@ Connect **Itaú, Bradesco, Santander, Nubank, Inter, Banco do Brasil, Caixa, C6*
 - 💬 **Works with any MCP client**: Claude Desktop, Cursor, VS Code, Cline, Continue
 - 🔒 **Read-only** — the AI cannot move money
 - 📊 **13 tools**: statements, balances, bills, investments, loans
-- 🤖 **Claude Code skill** included (see `skills/banco-mcp/`)
+- 🤖 **Agent skill** included — `npx skills add douglac/banco-mcp` (works with Claude Code, Cursor, Codex, OpenCode and 50+ agents via [skills.sh](https://skills.sh/douglac/banco-mcp))
 - ⚡ **Open Finance regulated** by Brazil's Central Bank
 - 🛡️ **LGPD-compliant** — explicit consent, minimal retention
 

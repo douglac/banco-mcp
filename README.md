@@ -123,19 +123,34 @@ Detalhe técnico: [docs/instalacao.md](docs/instalacao.md) · [docs/autenticacao
 
 ---
 
-## Skill do Claude Code
+## Skill pra agentes de IA
 
-Uma skill geral pronta pra Claude Code que cobre **todos os casos de uso** do Banco MCP — análise de gastos, extrato mensal, fluxo de caixa, fatura de cartão, carteira de investimentos, saldos, empréstimos.
+[![skills.sh](https://skills.sh/b/douglac/banco-mcp)](https://skills.sh/douglac/banco-mcp)
 
-📁 [`skills/banco-mcp/SKILL.md`](skills/banco-mcp/SKILL.md)
+Uma skill geral que cobre **todos os casos de uso** do Banco MCP — análise de gastos, extrato mensal, fluxo de caixa, fatura de cartão, carteira de investimentos, saldos, empréstimos. Funciona em **Claude Code, Cursor, Codex, OpenCode e outros 50+ agentes** suportados pelo ecossistema [skills.sh](https://skills.sh).
 
-Pra instalar, copie a pasta pra `~/.claude/skills/`:
+### Instalar via skills.sh (recomendado)
+
+```bash
+# detecta seu agente automaticamente e instala no diretório certo
+npx skills add douglac/banco-mcp
+
+# ou instala globalmente (todos os projetos)
+npx skills add douglac/banco-mcp -g
+
+# pra um agente específico
+npx skills add douglac/banco-mcp -a claude-code
+```
+
+### Instalar manualmente (Claude Code)
 
 ```bash
 cp -r skills/banco-mcp ~/.claude/skills/
 ```
 
-Depois é só perguntar coisas como "Quanto gastei esse mês?" ou "Como está minha carteira de investimentos?" — a skill ativa automaticamente e orquestra as 13 tools.
+📁 Conteúdo da skill: [`skills/banco-mcp/SKILL.md`](skills/banco-mcp/SKILL.md)
+
+Depois é só perguntar coisas como "Quanto gastei esse mês?" ou "Como está minha carteira de investimentos?" — a skill ativa automaticamente e orquestra as 13 tools do Banco MCP.
 
 ---
 
